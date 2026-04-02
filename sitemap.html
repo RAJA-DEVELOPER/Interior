@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sitemap — Lumière Interiors & Architecture</title>
+  <meta name="description" content="Sitemap for Lumière Interiors. Quickly navigate our portfolio, services, journal, and company details."/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    .sitemap-container { margin: 60px auto; max-width: 900px; }
+    .sitemap-list { display: flex; flex-direction: column; gap: 14px; list-style: none; padding: 0; }
+    .sitemap-list a { font-size: 1.1rem; color: var(--text); font-weight: 500; display: inline-flex; align-items: center; gap: 8px; }
+    .sitemap-list a:hover { color: var(--accent); transform: translateX(5px); }
+    .sitemap-list a::before { content: '—'; color: var(--accent); font-weight: bold; }
+    .sitemap-section { margin-bottom: 50px; }
+    .sitemap-section h3 { border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 24px; color: var(--primary); font-size: 1.8rem; }
+  </style>
+</head>
+<body>
+
+<div id="navbar-placeholder"></div>
+
+<section class="page-header" style="padding:180px 0 80px;">
+  <div class="ph-bg" style="background-color: var(--bg-dark);"></div>
+  <div class="container"><div class="ph-content text-center">
+    <h1>Site Map</h1>
+    <p>A complete overview of the pages on our platform.</p>
+  </div></div>
+</section>
+
+<section class="section">
+  <div class="container sitemap-container">
+    
+    <div class="grid-2 gap-lg">
+      <div class="sitemap-section">
+        <h3>Primary Pages</h3>
+        <ul class="sitemap-list">
+          <li><a href="index.html">Home (General Landing)</a></li>
+          <li><a href="home-niche.html">Home (Product Niche)</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="faq.html">Frequently Asked Questions</a></li>
+        </ul>
+      </div>
+
+      <div class="sitemap-section">
+        <h3>Services & Pricing</h3>
+        <ul class="sitemap-list">
+          <li><a href="services.html">All Services</a></li>
+          <li><a href="service-detail.html">Service Detail</a></li>
+          <li><a href="pricing.html">Pricing Plans</a></li>
+        </ul>
+      </div>
+
+      <div class="sitemap-section">
+        <h3>Portfolio</h3>
+        <ul class="sitemap-list">
+          <li><a href="gallery.html">Project Gallery</a></li>
+          <li><a href="project-detail.html">Project Detail (Laurent Residence)</a></li>
+        </ul>
+      </div>
+
+      <div class="sitemap-section">
+        <h3>Journal & Insights</h3>
+        <ul class="sitemap-list">
+          <li><a href="blog.html">Blog Overview</a></li>
+          <li><a href="blog-detail.html">Blog Article Detail</a></li>
+        </ul>
+      </div>
+
+      <div class="sitemap-section">
+        <h3>Client Portal & Auth</h3>
+        <ul class="sitemap-list">
+          <li><a href="login.html">Login</a></li>
+          <li><a href="signup.html">Create Account</a></li>
+          <li><a href="dashboard.html">Admin Dashboard</a></li>
+        </ul>
+      </div>
+
+      <div class="sitemap-section">
+        <h3>Legal & Utility</h3>
+        <ul class="sitemap-list">
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="404.html">404 Error Page</a></li>
+          <li><a href="maintenance.html">Maintenance Page</a></li>
+          <li><a href="sitemap.html">Sitemap (Current)</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="js/main.js"></script>
+</body>
+</html>

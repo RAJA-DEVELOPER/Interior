@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Journal — Lumière Interiors & Architecture</title>
+  <meta name="description" content="Insights, trends, and inspiration from the world of luxury interior design and architecture. The Lumière Journal."/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<div id="navbar-placeholder"></div>
+
+<section class="page-header">
+  <div class="ph-bg" style="background-image:url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1600&q=80')"></div>
+  <div class="container"><div class="ph-content">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span>Journal</span></div>
+    <h1>The Journal</h1>
+    <p>Ideas, inspiration, and insights from the world of luxury design.</p>
+  </div></div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <!-- Search + Filter -->
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-bottom:44px">
+      <div class="blog-search" style="margin-bottom:0">
+        <input type="text" placeholder="Search articles..." id="blogSearch"/>
+        <button type="button">Search</button>
+      </div>
+      <div class="filter-bar" style="margin-bottom:0" data-target=".blog-grid">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="trends">Trends</button>
+        <button class="filter-btn" data-filter="tips">Tips</button>
+        <button class="filter-btn" data-filter="projects">Projects</button>
+        <button class="filter-btn" data-filter="materials">Materials</button>
+      </div>
+    </div>
+
+    <div class="blog-grid filter-target">
+      <div class="card reveal" data-cat="trends">
+        <div class="card-img-wrap"><img class="card-img" src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80" alt="2024 Design Trends" loading="lazy"/></div>
+        <div class="card-body">
+          <div class="card-label">Trends</div>
+          <h4 class="card-title"><a href="blog-detail.html">The Top 10 Interior Design Trends for 2024</a></h4>
+          <p class="card-text">From warm minimalism to sustainable luxury, discover the trends shaping how we live, work and entertain this year.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px">
+            <span style="font-size:0.76rem;color:var(--text-muted)">March 15, 2024 · 6 min read</span>
+            <a href="blog-detail.html" class="card-link">Read <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="card reveal delay-1" data-cat="tips">
+        <div class="card-img-wrap"><img class="card-img" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Small space tips" loading="lazy"/></div>
+        <div class="card-body">
+          <div class="card-label">Tips</div>
+          <h4 class="card-title"><a href="blog-detail.html">7 Designer Tricks for Small Spaces</a></h4>
+          <p class="card-text">Limited square footage doesn't mean limited style. Learn how top designers make compact rooms feel luxurious.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px">
+            <span style="font-size:0.76rem;color:var(--text-muted)">March 8, 2024 · 5 min read</span>
+            <a href="blog-detail.html" class="card-link">Read <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="card reveal delay-2" data-cat="projects">
+        <div class="card-img-wrap"><img class="card-img" src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&q=80" alt="Behind the scenes" loading="lazy"/></div>
+        <div class="card-body">
+          <div class="card-label">Projects</div>
+          <h4 class="card-title"><a href="blog-detail.html">Behind the Scenes: The Laurent Residence</a></h4>
+          <p class="card-text">An inside look at how we transformed a classic Parisian apartment into a modern masterpiece.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px">
+            <span style="font-size:0.76rem;color:var(--text-muted)">Feb 22, 2024 · 8 min read</span>
+            <a href="blog-detail.html" class="card-link">Read <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="card reveal" data-cat="materials">
+        <div class="card-img-wrap"><img class="card-img" src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80" alt="Natural stone" loading="lazy"/></div>
+        <div class="card-body">
+          <div class="card-label">Materials</div>
+          <h4 class="card-title"><a href="blog-detail.html">A Guide to Natural Stone in Interior Design</a></h4>
+          <p class="card-text">From marble to travertine — everything you need to know about using natural stone in your home.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px">
+            <span style="font-size:0.76rem;color:var(--text-muted)">Feb 10, 2024 · 7 min read</span>
+            <a href="blog-detail.html" class="card-link">Read <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="card reveal delay-1" data-cat="trends">
+        <div class="card-img-wrap"><img class="card-img" src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=600&q=80" alt="Color of the year" loading="lazy"/></div>
+        <div class="card-body">
+          <div class="card-label">Trends</div>
+          <h4 class="card-title"><a href="blog-detail.html">Colour of the Year: How to Use It</a></h4>
+          <p class="card-text">Practical ways to incorporate the trending colour into your interiors without overwhelming your space.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px">
+            <span style="font-size:0.76rem;color:var(--text-muted)">Jan 28, 2024 · 4 min read</span>
+            <a href="blog-detail.html" class="card-link">Read <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="card reveal delay-2" data-cat="tips">
+        <div class="card-img-wrap"><img class="card-img" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80" alt="Lighting guide" loading="lazy"/></div>
+        <div class="card-body">
+          <div class="card-label">Tips</div>
+          <h4 class="card-title"><a href="blog-detail.html">The Complete Lighting Design Handbook</a></h4>
+          <p class="card-text">Ambient, task, and accent — master the three layers of lighting to transform any room instantly.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px">
+            <span style="font-size:0.76rem;color:var(--text-muted)">Jan 15, 2024 · 9 min read</span>
+            <a href="blog-detail.html" class="card-link">Read <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="js/main.js"></script>
+</body>
+</html>

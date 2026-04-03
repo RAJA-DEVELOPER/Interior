@@ -6,6 +6,11 @@
   <title>Dashboard — Lumière Client Portal</title>
   <meta name="description" content="Lumière Interiors client dashboard — track projects, view proposals, and communicate with your design team."/>
   <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    .dash-panel { display: none; width: 100%; transition: var(--transition); }
+    .dash-panel.active { display: block; animation: fadeIn 0.5s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
 </head>
 <body>
 <div class="dashboard-layout">
@@ -19,28 +24,28 @@
     </div>
     <nav class="sidebar-nav">
       <div class="sidebar-label">Main</div>
-      <a href="#" class="sidebar-link active">
+      <a href="#dash-main" class="sidebar-link active" data-tab="dash-main">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
         Dashboard
       </a>
-      <a href="#" class="sidebar-link">
+      <a href="#dash-projects" class="sidebar-link" data-tab="dash-projects">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
         My Projects
       </a>
-      <a href="#" class="sidebar-link">
+      <a href="#dash-proposals" class="sidebar-link" data-tab="dash-proposals">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
         Proposals
       </a>
-      <a href="#" class="sidebar-link">
+      <a href="#dash-messages" class="sidebar-link" data-tab="dash-messages">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         Messages
       </a>
       <div class="sidebar-label" style="margin-top:16px">Account</div>
-      <a href="#" class="sidebar-link">
+      <a href="#dash-profile" class="sidebar-link" data-tab="dash-profile">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         Profile
       </a>
-      <a href="#" class="sidebar-link">
+      <a href="#dash-settings" class="sidebar-link" data-tab="dash-settings">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
         Settings
       </a>
@@ -69,87 +74,131 @@
       </div>
     </div>
 
-    <!-- Stats -->
-    <div class="dash-stats">
-      <div class="dash-stat">
-        <div class="ds-val">2</div>
-        <div class="ds-lbl">Active Projects</div>
+    <!-- Tab Panels -->
+    <div id="dash-main" class="dash-panel active">
+      <!-- Stats -->
+      <div class="dash-stats">
+        <div class="dash-stat">
+          <div class="ds-val">2</div>
+          <div class="ds-lbl">Active Projects</div>
+        </div>
+        <div class="dash-stat">
+          <div class="ds-val">4</div>
+          <div class="ds-lbl">Pending Proposals</div>
+        </div>
+        <div class="dash-stat">
+          <div class="ds-val">12</div>
+          <div class="ds-lbl">Messages</div>
+        </div>
+        <div class="dash-stat">
+          <div class="ds-val">78%</div>
+          <div class="ds-lbl">Project Progress</div>
+        </div>
       </div>
-      <div class="dash-stat">
-        <div class="ds-val">4</div>
-        <div class="ds-lbl">Pending Proposals</div>
+
+      <!-- Active Projects -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:28px">
+        <div style="background:var(--white);padding:28px;border-radius:var(--radius-md);box-shadow:var(--shadow-sm)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+            <h5 style="font-family:var(--font-body);font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent)">Living Room Redesign</h5>
+            <span class="tag">In Progress</span>
+          </div>
+          <div style="background:var(--bg);border-radius:20px;height:8px;overflow:hidden;margin-bottom:14px">
+            <div style="background:var(--accent);height:100%;width:78%;border-radius:20px"></div>
+          </div>
+          <p style="font-size:0.85rem;color:var(--text-muted);margin:0">78% complete · Next milestone: furniture delivery (March 20)</p>
+        </div>
+        <div style="background:var(--white);padding:28px;border-radius:var(--radius-md);box-shadow:var(--shadow-sm)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+            <h5 style="font-family:var(--font-body);font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent)">Kitchen Renovation</h5>
+            <span class="tag">Concept Phase</span>
+          </div>
+          <div style="background:var(--bg);border-radius:20px;height:8px;overflow:hidden;margin-bottom:14px">
+            <div style="background:var(--accent);height:100%;width:35%;border-radius:20px"></div>
+          </div>
+          <p style="font-size:0.85rem;color:var(--text-muted);margin:0">35% complete · Next milestone: 3D render review (March 25)</p>
+        </div>
       </div>
-      <div class="dash-stat">
-        <div class="ds-val">12</div>
-        <div class="ds-lbl">Messages</div>
-      </div>
-      <div class="dash-stat">
-        <div class="ds-val">78%</div>
-        <div class="ds-lbl">Project Progress</div>
+
+      <!-- Recent Activity -->
+      <div style="background:var(--white);padding:28px;border-radius:var(--radius-md);box-shadow:var(--shadow-sm)">
+        <h5 style="font-family:var(--font-body);font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:22px">Recent Activity</h5>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;gap:14px;align-items:flex-start;padding-bottom:16px;border-bottom:1px solid var(--border)">
+            <div style="width:36px;height:36px;border-radius:50%;background:rgba(193,154,107,0.12);display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0;font-size:14px">📋</div>
+            <div>
+              <p style="font-size:0.88rem;font-weight:600;margin:0">New proposal uploaded</p>
+              <p style="font-size:0.78rem;color:var(--text-muted);margin:2px 0 0">Kitchen Renovation — Concept Option B · 2 hours ago</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;padding-bottom:16px;border-bottom:1px solid var(--border)">
+            <div style="width:36px;height:36px;border-radius:50%;background:rgba(193,154,107,0.12);display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0;font-size:14px">💬</div>
+            <div>
+              <p style="font-size:0.88rem;font-weight:600;margin:0">New message from Clara Dupont</p>
+              <p style="font-size:0.78rem;color:var(--text-muted);margin:2px 0 0">"The sofa fabric samples have arrived. Shall we schedule a viewing?" · 5 hours ago</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Active Projects -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:28px">
-      <div style="background:var(--white);padding:28px;border-radius:var(--radius-md);box-shadow:var(--shadow-sm)">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
-          <h5 style="font-family:var(--font-body);font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent)">Living Room Redesign</h5>
-          <span class="tag">In Progress</span>
-        </div>
-        <div style="background:var(--bg);border-radius:20px;height:8px;overflow:hidden;margin-bottom:14px">
-          <div style="background:var(--accent);height:100%;width:78%;border-radius:20px"></div>
-        </div>
-        <p style="font-size:0.85rem;color:var(--text-muted);margin:0">78% complete · Next milestone: furniture delivery (March 20)</p>
-      </div>
-      <div style="background:var(--white);padding:28px;border-radius:var(--radius-md);box-shadow:var(--shadow-sm)">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
-          <h5 style="font-family:var(--font-body);font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent)">Kitchen Renovation</h5>
-          <span class="tag">Concept Phase</span>
-        </div>
-        <div style="background:var(--bg);border-radius:20px;height:8px;overflow:hidden;margin-bottom:14px">
-          <div style="background:var(--accent);height:100%;width:35%;border-radius:20px"></div>
-        </div>
-        <p style="font-size:0.85rem;color:var(--text-muted);margin:0">35% complete · Next milestone: 3D render review (March 25)</p>
+    <!-- Additional Panels -->
+    <div id="dash-projects" class="dash-panel">
+      <h3>My Projects</h3>
+      <div style="background:var(--white);padding:60px;text-align:center;border-radius:var(--radius-md);box-shadow:var(--shadow-sm);margin-top:20px">
+        <p style="color:var(--text-muted)">Manage your ongoing and completed projects here.</p>
+        <a href="gallery.html" class="btn btn-primary" style="margin-top:20px">View Project Gallery</a>
       </div>
     </div>
-
-    <!-- Recent Activity -->
-    <div style="background:var(--white);padding:28px;border-radius:var(--radius-md);box-shadow:var(--shadow-sm)">
-      <h5 style="font-family:var(--font-body);font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:22px">Recent Activity</h5>
-      <div style="display:flex;flex-direction:column;gap:16px">
-        <div style="display:flex;gap:14px;align-items:flex-start;padding-bottom:16px;border-bottom:1px solid var(--border)">
-          <div style="width:36px;height:36px;border-radius:50%;background:rgba(193,154,107,0.12);display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0;font-size:14px">📋</div>
-          <div>
-            <p style="font-size:0.88rem;font-weight:600;margin:0">New proposal uploaded</p>
-            <p style="font-size:0.78rem;color:var(--text-muted);margin:2px 0 0">Kitchen Renovation — Concept Option B · 2 hours ago</p>
-          </div>
-        </div>
-        <div style="display:flex;gap:14px;align-items:flex-start;padding-bottom:16px;border-bottom:1px solid var(--border)">
-          <div style="width:36px;height:36px;border-radius:50%;background:rgba(193,154,107,0.12);display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0;font-size:14px">💬</div>
-          <div>
-            <p style="font-size:0.88rem;font-weight:600;margin:0">New message from Clara Dupont</p>
-            <p style="font-size:0.78rem;color:var(--text-muted);margin:2px 0 0">"The sofa fabric samples have arrived. Shall we schedule a viewing?" · 5 hours ago</p>
-          </div>
-        </div>
-        <div style="display:flex;gap:14px;align-items:flex-start;padding-bottom:16px;border-bottom:1px solid var(--border)">
-          <div style="width:36px;height:36px;border-radius:50%;background:rgba(193,154,107,0.12);display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0;font-size:14px">✅</div>
-          <div>
-            <p style="font-size:0.88rem;font-weight:600;margin:0">Milestone completed</p>
-            <p style="font-size:0.78rem;color:var(--text-muted);margin:2px 0 0">Living Room — Paint & wallpaper installation complete · 1 day ago</p>
-          </div>
-        </div>
-        <div style="display:flex;gap:14px;align-items:flex-start">
-          <div style="width:36px;height:36px;border-radius:50%;background:rgba(193,154,107,0.12);display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0;font-size:14px">📸</div>
-          <div>
-            <p style="font-size:0.88rem;font-weight:600;margin:0">3D renders shared</p>
-            <p style="font-size:0.78rem;color:var(--text-muted);margin:2px 0 0">Kitchen Renovation — 6 photorealistic views uploaded · 2 days ago</p>
-          </div>
-        </div>
+    <div id="dash-proposals" class="dash-panel">
+      <h3>Design Proposals</h3>
+      <div style="background:var(--white);padding:60px;text-align:center;border-radius:var(--radius-md);box-shadow:var(--shadow-sm);margin-top:20px">
+        <p style="color:var(--text-muted)">Your current proposals will appear here once ready.</p>
+      </div>
+    </div>
+    <div id="dash-messages" class="dash-panel">
+      <h3>Messages</h3>
+      <div style="background:var(--white);padding:60px;text-align:center;border-radius:var(--radius-md);box-shadow:var(--shadow-sm);margin-top:20px">
+        <p style="color:var(--text-muted)">Direct communication with your design team.</p>
+      </div>
+    </div>
+    <div id="dash-profile" class="dash-panel">
+      <h3>Client Profile</h3>
+      <div style="background:var(--white);padding:40px;border-radius:var(--radius-md);box-shadow:var(--shadow-sm);margin-top:20px">
+        <p><strong>Name:</strong> Sophie Laurent</p>
+        <p><strong>Email:</strong> sophie.l@example.com</p>
+        <p><strong>Member Since:</strong> January 2024</p>
+      </div>
+    </div>
+    <div id="dash-settings" class="dash-panel">
+      <h3>Settings</h3>
+      <div style="background:var(--white);padding:60px;text-align:center;border-radius:var(--radius-md);box-shadow:var(--shadow-sm);margin-top:20px">
+        <p style="color:var(--text-muted)">Account preferences and notification settings.</p>
       </div>
     </div>
   </main>
 </div>
 
 <script src="js/main.js"></script>
+<script>
+  // Dashboard specific tab switching
+  document.querySelectorAll('.sidebar-link[data-tab]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      // Remove active from all links and panels
+      document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+      document.querySelectorAll('.dash-panel').forEach(p => p.classList.remove('active'));
+      
+      // Add active to current link
+      link.classList.add('active');
+      
+      // Show target panel
+      const target = link.getAttribute('data-tab');
+      const panel = document.getElementById(target);
+      if (panel) panel.classList.add('active');
+    });
+  });
+</script>
 </body>
 </html>

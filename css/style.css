@@ -31,6 +31,7 @@
 html { scroll-behavior:smooth; font-size:16px; overflow-x:hidden; }
 body { font-family:var(--font-body); color:var(--text); background:var(--bg); line-height:1.65; overflow-x:hidden; }
 img { max-width:100%; height:auto; display:block; }
+.section { overflow-x: hidden; }
 a { text-decoration:none; color:inherit; transition:var(--transition); }
 ul { list-style:none; }
 button { cursor:pointer; border:none; background:none; font-family:var(--font-body); }
@@ -347,6 +348,47 @@ h5 { font-size:1.2rem; }
 .accordion-body { max-height:0; overflow:hidden; transition:max-height 0.4s ease; }
 .acc-inner { padding:0 26px 22px; font-size:0.93rem; color:var(--text-muted); line-height:1.8; }
 
+/* ── FAQ Layout ── */
+.faq-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 60px;
+  align-items: start;
+}
+.faq-sidebar {
+  position: sticky;
+  top: 100px;
+}
+@media (max-width: 992px) {
+  .faq-layout { display: block; }
+  .faq-sidebar { position: static; margin-bottom: 32px; width: 100%; overflow: hidden; }
+  .faq-sidebar h5 { display: none; }
+  .faq-sidebar nav { 
+    flex-direction: row !important; 
+    display: flex !important;
+    overflow-x: auto; 
+    width: calc(100% + 40px);
+    padding: 8px 0 15px;
+    margin: 0 -20px 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    gap: 10px !important;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    border-bottom: 2px solid var(--border);
+  }
+  .faq-sidebar nav::-webkit-scrollbar { display: none; }
+  .faq-sidebar nav a { 
+    white-space: nowrap; 
+    padding: 10px 18px !important; 
+    flex-shrink: 0; 
+    font-size: 0.82rem !important;
+    background: rgba(0,0,0,0.03); 
+    border-radius: var(--radius-sm);
+  }
+  .faq-sidebar nav a[style*="background"] { background: rgba(193,154,107,0.1) !important; color: var(--accent) !important; font-weight: 600; }
+}
+
 /* ── Pricing ── */
 .pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; align-items:start; }
 .pricing-card { background:var(--white); border:1px solid var(--border); border-radius:var(--radius-lg); padding:40px; position:relative; transition:var(--transition); }
@@ -412,7 +454,6 @@ h5 { font-size:1.2rem; }
 .about-badge { position:absolute; bottom:-28px; right:-28px; width:150px; height:150px; border-radius:50%; background:var(--accent); display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--white); box-shadow:var(--shadow-md); }
 .about-badge .bnum { font-family:var(--font-heading); font-size:2.4rem; font-weight:700; line-height:1; }
 .about-badge .btxt { font-size:0.6rem; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.85); text-align:center; }
-.about-accent { position:absolute; top:-18px; left:-18px; width:90px; height:90px; border:2px solid var(--accent); border-radius:var(--radius-sm); opacity:0.38; }
 .about-feats { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:28px; }
 .about-feat  { display:flex; align-items:center; gap:10px; font-size:0.88rem; font-weight:500; }
 .about-feat .chk { width:22px; height:22px; border-radius:50%; background:rgba(193,154,107,0.15); display:flex; align-items:center; justify-content:center; color:var(--accent); flex-shrink:0; font-size:11px; }
@@ -582,12 +623,15 @@ h5 { font-size:1.2rem; }
   .grid-2-1 { grid-template-columns:1fr; }
 }
 @media (max-width:640px) {
-  :root { --section-py:56px; }
-  .navbar { padding:0 20px; }
+  :root { --section-py:52px; }
+  .container { padding: 0 20px; }
+  .navbar { padding:0 15px; }
   .hero-label { letter-spacing:0.15em; }
   .hero-label::before { width:24px; }
-  .page-header { padding:140px 0 60px; }
-  .cta-section { padding:60px 0; }
+  .page-header { padding:110px 0 40px; }
+  .ph-content h1 { font-size: 2.2rem; }
+  .ph-content p { font-size: 0.95rem; }
+  .cta-section { padding:50px 0; }
   .nav-logo .logo-main { font-size:1.35rem; }
   .nav-logo .logo-sub { font-size: 0.52rem; letter-spacing: 0.15em; }
   .nav-toggle { padding:10px 0; }
@@ -610,5 +654,8 @@ h5 { font-size:1.2rem; }
   .t-text { font-size:1.25rem; }
   .about-badge { width:120px; height:120px; bottom:-18px; right:-10px; }
   .cta-btns { flex-direction:column; align-items:center; }
+  .accordion-header { padding: 18px 20px; font-size: 0.9rem; }
+  .acc-inner { padding: 0 20px 18px; font-size: 0.88rem; }
   .grid-3, .grid-4 { grid-template-columns:1fr; }
+  .reveal-left, .reveal-right, .reveal { transform: none !important; transition-delay: 0s !important; }
 }

@@ -10,45 +10,24 @@ const NAVBAR_HTML = `
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
       <span class="logo-main">Lumière</span>
-      <span class="logo-sub">Interiors & Architecture</span>
     </a>
     <ul class="nav-menu">
-      <li class="nav-item">
-        <a href="index.html" class="nav-link">Home</a>
-        <div class="dropdown">
-          <a href="index.html">General Landing</a>
-          <a href="home-niche.html">Niche / Product</a>
-        </div>
-      </li>
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="home-niche.html" class="nav-link">Home 2</a></li>
       <li><a href="about.html" class="nav-link">About</a></li>
-      <li class="nav-item">
-        <a href="services.html" class="nav-link">Services</a>
-        <div class="dropdown">
-          <a href="services.html">All Services</a>
-          <a href="service-detail.html">Service Detail</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a href="gallery.html" class="nav-link">Projects</a>
-        <div class="dropdown">
-          <a href="gallery.html">Project Gallery</a>
-          <a href="project-detail.html">Project Detail</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a href="blog.html" class="nav-link">Journal</a>
-        <div class="dropdown">
-          <a href="blog.html">All Articles</a>
-          <a href="blog-detail.html">Article Detail</a>
-        </div>
-      </li>
+      <li><a href="services.html" class="nav-link">Services</a></li>
+      <li><a href="gallery.html" class="nav-link">Projects</a></li>
+      <li><a href="blog.html" class="nav-link">Journal</a></li>
       <li><a href="pricing.html" class="nav-link">Pricing</a></li>
       <li><a href="contact.html" class="nav-link">Contact</a></li>
       <li class="nav-item">
-        <a href="signup.html" class="nav-link">Signup</a>
+        <a href="signup.html" class="nav-link" aria-label="Signup/Login">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-top:-2px"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </a>
         <div class="dropdown">
-          <a href="login.html">Login</a>
-          <a href="dashboard.html">Admin</a>
+          <a href="login.html">Signup/Login</a>
+          <a href="user-dashboard.html">User Dashboard</a>
+          <a href="dashboard.html">Admin Dashboard</a>
         </div>
       </li>
     </ul>
@@ -64,28 +43,18 @@ const NAVBAR_HTML = `
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" id="mobileClose">&#x2715;</button>
   <a href="index.html" class="mobile-nav-link">Home</a>
-  <div class="mobile-sub">
-    <a href="index.html">General Landing</a>
-    <a href="home-niche.html">Niche / Product</a>
-  </div>
+  <a href="home-niche.html" class="mobile-nav-link">Home 2</a>
   <a href="about.html" class="mobile-nav-link">About</a>
   <a href="services.html" class="mobile-nav-link">Services</a>
-  <div class="mobile-sub">
-    <a href="services.html">All Services</a>
-    <a href="service-detail.html">Service Detail</a>
-  </div>
   <a href="gallery.html" class="mobile-nav-link">Projects</a>
-  <div class="mobile-sub">
-    <a href="gallery.html">Gallery</a>
-    <a href="project-detail.html">Project Detail</a>
-  </div>
   <a href="blog.html" class="mobile-nav-link">Journal</a>
   <a href="pricing.html" class="mobile-nav-link">Pricing</a>
   <a href="faq.html" class="mobile-nav-link">FAQ</a>
   <a href="contact.html" class="mobile-nav-link">Contact</a>
   <div style="margin-top:28px;">
-    <a href="login.html" class="btn btn-outline" style="width:100%;justify-content:center;margin-bottom:12px;display:flex;">Login</a>
-    <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;display:flex;">Book Consultation</a>
+    <a href="login.html" class="btn btn-outline" style="width:100%;justify-content:center;margin-bottom:12px;display:flex;">Signup / Login</a>
+    <a href="user-dashboard.html" class="btn btn-outline" style="width:100%;justify-content:center;margin-bottom:12px;display:flex;border-color:transparent">My Dashboard</a>
+    <a href="contact.html" class="btn btn-primary" style="width:100%;height:48px;justify-content:center;display:flex;align-items:center">Book Consultation</a>
   </div>
 </div>`;
 
@@ -97,7 +66,6 @@ const FOOTER_HTML = `
       <div class="footer-brand">
         <div class="nav-logo">
           <span class="logo-main">Lumière</span>
-          <span class="logo-sub">Interiors & Architecture</span>
         </div>
         <p>We craft spaces that inspire — blending timeless elegance with modern sensibility for discerning clients worldwide.</p>
         <div class="footer-social">
@@ -130,12 +98,12 @@ const FOOTER_HTML = `
       <div class="footer-col">
         <h5>Services</h5>
         <nav class="footer-links">
-          <a href="service-detail.html">Interior Design</a>
-          <a href="service-detail.html">Architecture</a>
-          <a href="service-detail.html">Space Planning</a>
-          <a href="service-detail.html">3D Visualization</a>
-          <a href="service-detail.html">Furniture Curation</a>
-          <a href="service-detail.html">Project Management</a>
+          <a href="service-interior.html">Interior Design</a>
+          <a href="service-architecture.html">Architecture</a>
+          <a href="service-space-planning.html">Space Planning</a>
+          <a href="service-visualization.html">3D Visualization</a>
+          <a href="service-furniture.html">Furniture Curation</a>
+          <a href="service-management.html">Project Management</a>
           <a href="faq.html">FAQ</a>
         </nav>
       </div>
@@ -169,7 +137,7 @@ const FOOTER_HTML = `
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2024 Lumière Interiors & Architecture. All rights reserved.</p>
+      <p>&copy; 2024 Lumière. All rights reserved.</p>
       <div class="footer-bottom-links">
         <a href="privacy.html">Privacy Policy</a>
         <a href="terms.html">Terms & Conditions</a>
@@ -182,11 +150,38 @@ const FOOTER_HTML = `
 /* ── Inject Navbar & Footer ── */
 function injectNavbar() {
   const placeholder = document.getElementById('navbar-placeholder');
-  if (placeholder) placeholder.outerHTML = NAVBAR_HTML;
+  if (placeholder) {
+    let finalNav = NAVBAR_HTML;
+    
+    // Check login state
+    const isLoggedIn = localStorage.getItem('lumiere_logged_in') === 'true' || window.location.pathname.includes('dashboard');
+    
+    if (isLoggedIn) {
+      // Dynamic replacement using regex for robustness
+      finalNav = finalNav.replace(/Signup\/Login/g, 'Logout');
+      finalNav = finalNav.replace(/Signup \/ Login/g, 'Logout');
+      // Change the link to trigger logout logic
+      finalNav = finalNav.replace('href="login.html"', 'href="#" class="logout-trigger"');
+    }
+    
+    placeholder.innerHTML = finalNav;
+    
+    // If we just injected a logout trigger, attach the event
+    const triggers = placeholder.querySelectorAll('.logout-trigger');
+    triggers.forEach(t => {
+      t.addEventListener('click', (e) => {
+        e.preventDefault();
+        localStorage.removeItem('lumiere_logged_in');
+        window.location.href = 'index.html';
+      });
+    });
+  }
 }
 function injectFooter() {
   const placeholder = document.getElementById('footer-placeholder');
-  if (placeholder) placeholder.outerHTML = FOOTER_HTML;
+  if (placeholder) {
+    placeholder.innerHTML = FOOTER_HTML;
+  }
 }
 
 /* ── Navbar Scroll Effect ── */
@@ -240,11 +235,14 @@ function initNavbar() {
 
 /* ── Scroll Reveal ── */
 function initReveal() {
-  const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  const els = Array.from(document.querySelectorAll('.reveal, .reveal-left, .reveal-right'));
   if (!els.length) return;
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      if (e.isIntersecting) { 
+        e.target.classList.add('visible'); 
+        io.unobserve(e.target); 
+      }
     });
   }, { threshold: 0.12 });
   els.forEach(el => io.observe(el));
@@ -484,8 +482,11 @@ function initForms() {
       if (valid) {
         const btn = form.querySelector('[type=submit]');
         if (form.closest('.auth-form-wrap')) {
-          if (btn) { btn.textContent = 'Please wait...'; btn.disabled = true; }
-          setTimeout(() => { window.location.href = 'index.html'; }, 800);
+          if (btn) { btn.textContent = 'Authenticating...'; btn.disabled = true; }
+          setTimeout(() => { 
+            localStorage.setItem('lumiere_logged_in', 'true');
+            window.location.href = 'index.html'; 
+          }, 1200);
         } else {
           if (btn) { btn.textContent = 'Message Sent! ✓'; btn.disabled = true; }
         }
@@ -531,18 +532,16 @@ function initCounters() {
 /* ── Page Transition ── */
 function initPageTransition() {
   document.body.style.opacity = '0';
-  document.body.style.transition = 'opacity 0.4s ease';
-  window.addEventListener('load', () => {
-    document.body.style.opacity = '1';
-  });
-  document.querySelectorAll('a[href]:not([target="_blank"]):not([href^="#"]):not([href^="mailto"]):not([href^="tel"])').forEach(link => {
-    link.addEventListener('click', e => {
-      const href = link.getAttribute('href');
-      if (!href || href.startsWith('javascript')) return;
-      e.preventDefault();
-      document.body.style.opacity = '0';
-      setTimeout(() => { window.location.href = href; }, 350);
-    });
+  document.body.style.opacity = '1';
+  document.addEventListener('click', e => {
+    const link = e.target.closest('a[href]:not([target="_blank"]):not([href^="#"]):not([href^="mailto"]):not([href^="tel"])');
+    if (!link) return;
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('javascript') || e.ctrlKey || e.shiftKey || e.metaKey || e.button === 1) return;
+    
+    e.preventDefault();
+    document.body.style.opacity = '0';
+    setTimeout(() => { window.location.href = href; }, 350);
   });
 }
 
@@ -574,6 +573,49 @@ function initSmoothScroll() {
   });
 }
 
+/* ── Password Visibility Toggle ── */
+function initPassToggle() {
+  document.querySelectorAll('.pass-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.dataset.target;
+      const input = document.getElementById(targetId);
+      if (!input) return;
+      
+      const isOpen = input.type === 'text';
+      input.type = isOpen ? 'password' : 'text';
+      
+      // Toggle Icons
+      const eyeOpen = btn.querySelector('.eye-open');
+      const eyeClosed = btn.querySelector('.eye-closed');
+      if (eyeOpen && eyeClosed) {
+        eyeOpen.classList.toggle('hidden', !isOpen);
+        eyeClosed.classList.toggle('hidden', isOpen);
+      }
+    });
+  });
+}
+
+/* ── Social Login Logic (Simulated) ── */
+function initSocialLogin() {
+  document.querySelectorAll('.auth-social-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const provider = btn.textContent.trim();
+      const originalContent = btn.innerHTML;
+      
+      // Loading State
+      btn.disabled = true;
+      btn.innerHTML = `<span class="spinner" style="width:16px;height:16px;border:2px solid;border-top-color:transparent;border-radius:50%;display:inline-block;animation:spin 0.8s linear infinite;margin-right:8px"></span> Connecting to ${provider}...`;
+      
+      // Simulated Redirect
+      setTimeout(() => {
+        localStorage.setItem('lumiere_logged_in', 'true');
+        window.location.href = 'index.html';
+      }, 1500);
+    });
+  });
+}
+
 /* ── Init All ── */
 document.addEventListener('DOMContentLoaded', () => {
   injectNavbar();
@@ -593,4 +635,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initPageTransition();
   initAuthTabs();
   initSmoothScroll();
+  initPassToggle();
+  initSocialLogin();
 });

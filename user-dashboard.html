@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Dashboard — Lumière Client Portal</title>
+  <meta name="description" content="Lumière user dashboard — track your interior design projects, view proposals, and communicate with your design team."/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    :root {
+      --sidebar-width: 280px;
+    }
+    body { background: #f9f9f9; }
+    .dashboard-layout { display: flex; min-height: 100vh; }
+    
+    .sidebar { width: var(--sidebar-width); background: var(--white); border-right: 1px solid var(--border); display: flex; flex-direction: column; position: fixed; height: 100vh; z-index: 100; transition: transform 0.3s ease; }
+    .sidebar-logo { padding: 30px 40px; border-bottom: 1px solid var(--border); }
+    .sidebar-nav { padding: 30px 20px; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+    .sidebar-label { padding: 0 20px 10px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-muted); opacity: 0.6; }
+    .sidebar-link { display: flex; align-items: center; gap: 14px; padding: 14px 20px; border-radius: 10px; color: var(--text-muted); font-size: 0.92rem; font-weight: 500; transition: all 0.25s ease; text-decoration: none; }
+    .sidebar-link svg { width: 18px; height: 18px; opacity: 0.7; }
+    .sidebar-link:hover, .sidebar-link.active { background: rgba(193,154,107,0.08); color: var(--accent); }
+    .sidebar-link.active svg { opacity: 1; color: var(--accent); }
+    
+    .dashboard-main { flex: 1; margin-left: var(--sidebar-width); padding: 40px; }
+    .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+    .dash-header h2 { margin: 0; font-size: 1.8rem; }
+    
+    .dash-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px; }
+    .dash-card { background: var(--white); border-radius: 20px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.02); }
+    .dash-card h4 { margin: 0 0 10px 0; font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+    .dash-card .value { font-size: 2rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+    .dash-card .trend { font-size: 0.85rem; display: flex; align-items: center; gap: 6px; }
+    .trend.up { color: #2ecc71; }
+    
+    .project-list { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+    .project-card { background: var(--white); border-radius: 24px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.04); display: flex; flex-direction: column; }
+    .project-thumb { height: 200px; position: relative; }
+    .project-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .project-badge { position: absolute; top: 20px; right: 20px; background: var(--white); padding: 6px 14px; border-radius: 20px; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; color: var(--accent); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .project-info { padding: 30px; }
+    .project-info h3 { margin: 0 0 8px 0; font-size: 1.15rem; }
+    .project-info p { margin: 0 0 20px 0; color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; }
+    
+    .progress-bar { height: 6px; background: #eee; border-radius: 10px; overflow: hidden; margin-bottom: 10px; }
+    .progress-inner { height: 100%; background: var(--accent); border-radius: 10px; }
+    .progress-meta { display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 600; }
+    
+    .dash-panel { display: none; }
+    .dash-panel.active { display: block; animation: slideUp 0.6s ease; }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 1024px) {
+      .sidebar { transform: translateX(-100%); }
+      .dashboard-main { margin-left: 0; padding: 24px; }
+      .dash-grid { grid-template-columns: 1fr; }
+      .project-list { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body style="padding-top:80px">
+<div id="navbar-placeholder"></div>
+<div class="dashboard-layout">
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-main">Lumière</span>
+      </a>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-label">Overview</div>
+      <a href="#" class="sidebar-link active" data-tab="overview">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </a>
+      <a href="#" class="sidebar-link" data-tab="projects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        My Projects
+      </a>
+      <a href="#" class="sidebar-link" data-tab="messages">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Messages
+      </a>
+      <div class="sidebar-label" style="margin-top:20px">Private Area</div>
+      <a href="#" class="sidebar-link" data-tab="proposals">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+        Proposals
+      </a>
+      <a href="#" class="sidebar-link" data-tab="invoices">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+        Payments
+      </a>
+      <a href="index.html" class="sidebar-link" style="margin-top:auto">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16,17 21,12 16,7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Exit Dashboard
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="dashboard-main">
+    
+    <!-- Overview Panel -->
+    <div id="overview" class="dash-panel active">
+      <div class="dash-header">
+        <div>
+          <h2>Pulse Overview</h2>
+          <p style="color:var(--text-muted);margin:5px 0 0">Updates from your designer, Clara Dupont.</p>
+        </div>
+        <div style="display:flex;align-items:center;gap:20px">
+          <div style="text-align:right">
+            <div style="font-weight:700">Sophie Laurent</div>
+            <div style="font-size:0.75rem;color:var(--accent)">Premium Client</div>
+          </div>
+          <div style="width:48px;height:48px;border-radius:14px;overflow:hidden;background:#eee">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" style="width:100%;height:100%;object-fit:cover" alt="User Avatar"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-grid">
+        <div class="dash-card">
+          <h4>Active Budget</h4>
+          <div class="value">&uarr;‚¬124,500</div>
+          <div class="trend up">&uarr;†‘ 12% Allocated</div>
+        </div>
+        <div class="dash-card">
+          <h4>Days to Reveal</h4>
+          <div class="value">42</div>
+          <div class="trend">Expected May 15</div>
+        </div>
+        <div class="dash-card">
+          <h4>New Files</h4>
+          <div class="value">08</div>
+          <div class="trend">Since last visit</div>
+        </div>
+      </div>
+
+      <h3 style="margin-bottom:24px">Ongoing Projects</h3>
+      <div class="project-list">
+        <div class="project-card">
+          <div class="project-thumb">
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&q=80" alt="Penthouse Project"/>
+            <span class="project-badge">In Progress</span>
+          </div>
+          <div class="project-info">
+            <h3>Laurent Penthouse</h3>
+            <p>Master suite renovation and living area curation focusing on Scandinavian minimalism.</p>
+            <div class="progress-bar"><div class="progress-inner" style="width:75%"></div></div>
+            <div class="progress-meta"><span>75% Complete</span><span>Phase 3/4</span></div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-thumb">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" alt="Home Office"/>
+            <span class="project-badge">Planning</span>
+          </div>
+          <div class="project-info">
+            <h3>Home Studio</h3>
+            <p>Bespoke home office design with integrated acoustic panels and hidden storage.</p>
+            <div class="progress-bar"><div class="progress-inner" style="width:20%"></div></div>
+            <div class="progress-meta"><span>20% Complete</span><span>Initial Concept</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Placeholder Panels -->
+    <div id="projects" class="dash-panel">
+      <h2>Project Archive</h2>
+      <div style="background:var(--white);padding:100px;text-align:center;border-radius:24px;box-shadow:var(--shadow-sm);margin-top:20px">
+        <p style="color:var(--text-muted)">Historical project data will appear here.</p>
+      </div>
+    </div>
+    
+    <div id="messages" class="dash-panel">
+      <h2>Designer Communication</h2>
+      <div style="background:var(--white);padding:100px;text-align:center;border-radius:24px;box-shadow:var(--shadow-sm);margin-top:20px">
+        <p style="color:var(--text-muted)">Secure messages with Clara and the LumiÃ¨re team.</p>
+      </div>
+    </div>
+
+    <div id="proposals" class="dash-panel">
+      <h2>New Proposals</h2>
+      <div style="background:var(--white);padding:100px;text-align:center;border-radius:24px;box-shadow:var(--shadow-sm);margin-top:20px">
+        <p style="color:var(--text-muted)">Pending design concepts awaiting your approval.</p>
+      </div>
+    </div>
+
+    <div id="invoices" class="dash-panel">
+      <h2>Financial Overview</h2>
+      <div style="background:var(--white);padding:100px;text-align:center;border-radius:24px;box-shadow:var(--shadow-sm);margin-top:20px">
+        <p style="color:var(--text-muted)">Invoices, payments, and procurement receipts.</p>
+  </main>
+</div>
+
+
+<script src="js/main.js"></script>
+<script>
+  // Tab switching logic for dashboard
+  document.querySelectorAll('[data-tab]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      // Update sidebar links
+      document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+      
+      // Update panels
+      const targetId = link.dataset.tab;
+      document.querySelectorAll('.dash-panel').forEach(p => p.classList.remove('active'));
+      const targetPanel = document.getElementById(targetId);
+      if (targetPanel) targetPanel.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>

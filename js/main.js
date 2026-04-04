@@ -574,17 +574,36 @@ function initCounters() {
 
 /* ── Page Transition ── */
 function initPageTransition() {
-  document.body.style.opacity = '0';
-  document.body.style.opacity = '1';
+  const body = document.body;
+  if (!body) return;
+
+  // Set initial state and transition for fade effect
+  body.style.transition = 'opacity 0.3s ease-out';
+  body.style.opacity = '1';
+
+  // Fix: Handle Back/Forward Cache (BFCache) 
+  // This fires when the page is restored from cache (back button), ensuring the screen isn't left transparent.
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+      body.style.opacity = '1';
+    }
+  });
+
   document.addEventListener('click', e => {
     const link = e.target.closest('a[href]:not([target="_blank"]):not([href^="#"]):not([href^="mailto"]):not([href^="tel"])');
     if (!link) return;
+    
     const href = link.getAttribute('href');
     if (!href || href.startsWith('javascript') || e.ctrlKey || e.shiftKey || e.metaKey || e.button === 1) return;
     
+    // Check if it's the same page anchor (already handled in smooth scroll)
+    if (href.startsWith('#')) return;
+
     e.preventDefault();
-    document.body.style.opacity = '0';
-    setTimeout(() => { window.location.href = href; }, 350);
+    body.style.opacity = '0';
+    setTimeout(() => {
+      window.location.href = href;
+    }, 300);
   });
 }
 

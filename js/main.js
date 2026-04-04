@@ -20,23 +20,35 @@ const NAVBAR_HTML = `
       <li><a href="blog.html" class="nav-link">Journal</a></li>
       <li><a href="pricing.html" class="nav-link">Pricing</a></li>
       <li><a href="contact.html" class="nav-link">Contact</a></li>
-      <li class="nav-item">
-        <a href="signup.html" class="nav-link" aria-label="Signup/Login">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-top:-2px"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        </a>
-        <div class="dropdown">
-          <a href="login.html">Signup/Login</a>
-          <a href="user-dashboard.html">User Dashboard</a>
-          <a href="dashboard.html">Admin Dashboard</a>
-        </div>
-      </li>
     </ul>
-    <div class="nav-cta">
-      <a href="contact.html" class="btn btn-primary">Book Consultation</a>
+    <div class="nav-actions">
+      <div class="nav-item">
+        <a href="javascript:void(0)" class="nav-link account-link" aria-label="Account Menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </a>
+        <div class="dropdown account-dropdown">
+          <div class="dropdown-header">Account Access</div>
+          <a href="login.html" class="dropdown-item">
+            <span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg></span>
+            <span class="d-text">Login / Sign Up</span>
+          </a>
+          <a href="user-dashboard.html" class="dropdown-item">
+            <span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span>
+            <span class="d-text">User Dashboard</span>
+          </a>
+          <a href="dashboard.html" class="dropdown-item">
+            <span class="d-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+            <span class="d-text">Admin Dashboard</span>
+          </a>
+        </div>
+      </div>
+      <div class="nav-cta">
+        <a href="contact.html" class="btn btn-primary">Book Consultation</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
   </div>
 </nav>
 <div class="mobile-overlay" id="mobileOverlay"></div>
@@ -53,7 +65,6 @@ const NAVBAR_HTML = `
   <a href="contact.html" class="mobile-nav-link">Contact</a>
   <div style="margin-top:28px;">
     <a href="login.html" class="btn btn-outline" style="width:100%;justify-content:center;margin-bottom:12px;display:flex;">Signup / Login</a>
-    <a href="user-dashboard.html" class="btn btn-outline" style="width:100%;justify-content:center;margin-bottom:12px;display:flex;border-color:transparent">My Dashboard</a>
     <a href="contact.html" class="btn btn-primary" style="width:100%;height:48px;justify-content:center;display:flex;align-items:center">Book Consultation</a>
   </div>
 </div>`;
@@ -158,10 +169,20 @@ function injectNavbar() {
     
     if (isLoggedIn) {
       // Dynamic replacement using regex for robustness
-      finalNav = finalNav.replace(/Signup\/Login/g, 'Logout');
-      finalNav = finalNav.replace(/Signup \/ Login/g, 'Logout');
-      // Change the link to trigger logout logic
-      finalNav = finalNav.replace('href="login.html"', 'href="#" class="logout-trigger"');
+      finalNav = finalNav.replace(/Signup\/Login/gi, 'Logout');
+      finalNav = finalNav.replace(/Signup \/ Login/gi, 'Logout');
+      finalNav = finalNav.replace(/Login \/ Sign Up/gi, 'Logout');
+      finalNav = finalNav.replace(/Login\/Sign Up/gi, 'Logout');
+      
+      // Swap icon for logout (Exit icon)
+      const loginIcon = '<path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/>';
+      const logoutIcon = '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>';
+      finalNav = finalNav.replace(loginIcon, logoutIcon);
+
+      // Change the link and add the logout-trigger class cleanly
+      finalNav = finalNav.replace('href="login.html" class="dropdown-item"', 'href="#" class="dropdown-item logout-trigger"');
+      // For the mobile menu link
+      finalNav = finalNav.replace('href="login.html" class="btn btn-outline"', 'href="#" class="btn btn-outline logout-trigger"');
     }
     
     placeholder.innerHTML = finalNav;
@@ -231,6 +252,28 @@ function initNavbar() {
   if (toggle)   toggle.addEventListener('click', openMenu);
   if (closeBtn) closeBtn.addEventListener('click', closeMenu);
   if (overlay)  overlay.addEventListener('click', closeMenu);
+
+  // Dropdown click for mobile & tablet
+  const navItems = navbar.querySelectorAll('.nav-item');
+  navItems.forEach(item => {
+    const link = item.querySelector('.nav-link');
+    if (link) {
+      link.addEventListener('click', () => {
+        if (window.innerWidth < 1100) {
+          // Close other mobile menus if open
+          closeMenu();
+          // Toggle current dropdown
+          const dropdown = item.querySelector('.dropdown');
+          if (dropdown) {
+            const isVisible = dropdown.classList.contains('mobile-visible');
+            // Close all
+            navbar.querySelectorAll('.dropdown').forEach(d => d.classList.remove('mobile-visible'));
+            if (!isVisible) dropdown.classList.add('mobile-visible');
+          }
+        }
+      });
+    }
+  });
 }
 
 /* ── Scroll Reveal ── */

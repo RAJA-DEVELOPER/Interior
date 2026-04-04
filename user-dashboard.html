@@ -25,6 +25,8 @@
     .dashboard-main { flex: 1; margin-left: var(--sidebar-width); padding: 40px; }
     .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
     .dash-header h2 { margin: 0; font-size: 1.8rem; }
+    .dash-user-meta { display: flex; align-items: center; gap: 16px; text-align: left; }
+    .dash-user-info { display: flex; flex-direction: column; align-items: flex-start; }
     
     .dash-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px; }
     .dash-card { background: var(--white); border-radius: 20px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.02); }
@@ -53,6 +55,7 @@
     @media (max-width: 1024px) {
       .sidebar { transform: translateX(-100%); }
       .dashboard-main { margin-left: 0; padding: 24px; }
+      .dash-header { flex-direction: column; align-items: flex-start; gap: 24px; }
       .dash-grid { grid-template-columns: 1fr; }
       .project-list { grid-template-columns: 1fr; }
     }
@@ -108,13 +111,13 @@
           <h2>Pulse Overview</h2>
           <p style="color:var(--text-muted);margin:5px 0 0">Updates from your designer, Clara Dupont.</p>
         </div>
-        <div style="display:flex;align-items:center;gap:20px">
-          <div style="text-align:right">
-            <div style="font-weight:700">Sophie Laurent</div>
-            <div style="font-size:0.75rem;color:var(--accent)">Premium Client</div>
-          </div>
+        <div class="dash-user-meta">
           <div style="width:48px;height:48px;border-radius:14px;overflow:hidden;background:#eee">
             <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" style="width:100%;height:100%;object-fit:cover" alt="User Avatar"/>
+          </div>
+          <div class="dash-user-info">
+            <div style="font-weight:700">Sophie Laurent</div>
+            <div style="font-size:0.75rem;color:var(--accent)">Premium Client</div>
           </div>
         </div>
       </div>

@@ -253,20 +253,17 @@ function initNavbar() {
   if (closeBtn) closeBtn.addEventListener('click', closeMenu);
   if (overlay)  overlay.addEventListener('click', closeMenu);
 
-  // Dropdown click for mobile & tablet
+  // Dropdown click for mobile & tablet (links)
   const navItems = navbar.querySelectorAll('.nav-item');
   navItems.forEach(item => {
-    const link = item.querySelector('.nav-link');
+    const link = item.querySelector('.nav-link:not(.account-link)');
     if (link) {
       link.addEventListener('click', () => {
         if (window.innerWidth < 1100) {
-          // Close other mobile menus if open
           closeMenu();
-          // Toggle current dropdown
           const dropdown = item.querySelector('.dropdown');
           if (dropdown) {
             const isVisible = dropdown.classList.contains('mobile-visible');
-            // Close all
             navbar.querySelectorAll('.dropdown').forEach(d => d.classList.remove('mobile-visible'));
             if (!isVisible) dropdown.classList.add('mobile-visible');
           }
@@ -274,6 +271,24 @@ function initNavbar() {
       });
     }
   });
+
+  // Account Menu Toggle on Click (All screen sizes)
+  const accountLink = navbar.querySelector('.account-link');
+  const accountDropdown = navbar.querySelector('.account-dropdown');
+  if (accountLink && accountDropdown) {
+    accountLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      accountDropdown.classList.toggle('active');
+    });
+
+    // Close when clicking elsewhere
+    document.addEventListener('click', (e) => {
+      if (!accountDropdown.contains(e.target) && !accountLink.contains(e.target)) {
+        accountDropdown.classList.remove('active');
+      }
+    });
+  }
 }
 
 /* ── Scroll Reveal ── */

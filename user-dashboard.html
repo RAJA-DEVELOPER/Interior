@@ -53,11 +53,27 @@
     @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
     @media (max-width: 1024px) {
-      .sidebar { transform: translateX(-100%); }
-      .dashboard-main { margin-left: 0; padding: 24px; }
-      .dash-header { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .sidebar { transform: translateX(-100%); z-index: 2005; }
+      .sidebar.open { transform: translateX(0); box-shadow: 20px 0 50px rgba(0,0,0,0.15); }
+      .dashboard-main { margin-left: 0; padding: 24px 15px; }
+      .dash-header { flex-direction: row; align-items: center; gap: 15px; }
       .dash-grid { grid-template-columns: 1fr; }
       .project-list { grid-template-columns: 1fr; }
+      .dash-menu-toggle { display: flex !important; margin-right: 10px; }
+      .dash-header h2 { font-size: 1.4rem; }
+      .dash-user-meta { display: none; } /* Hide user meta on very small dash headers to save space */
+    }
+    .dash-menu-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      cursor: pointer;
     }
   </style>
 </head>
@@ -107,9 +123,14 @@
     <!-- Overview Panel -->
     <div id="overview" class="dash-panel active">
       <div class="dash-header">
-        <div>
-          <h2>Pulse Overview</h2>
-          <p style="color:var(--text-muted);margin:5px 0 0">Updates from your designer, Clara Dupont.</p>
+        <div style="display:flex;align-items:center">
+          <button class="dash-menu-toggle" id="dashToggle" aria-label="Toggle Dashboard Menu">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <div>
+            <h2>Pulse Overview</h2>
+            <p style="color:var(--text-muted);margin:5px 0 0">Updates from your designer, Clara Dupont.</p>
+          </div>
         </div>
         <div class="dash-user-meta">
           <div style="width:48px;height:48px;border-radius:14px;overflow:hidden;background:#eee">

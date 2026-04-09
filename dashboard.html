@@ -60,9 +60,14 @@
   <!-- Main Content -->
   <main class="dashboard-main">
     <div class="dash-topbar">
-      <div>
-        <h4>Welcome back, Sophie</h4>
-        <p style="color:var(--text-muted);font-size:0.88rem;margin:0">Here's what's happening with your projects.</p>
+      <div style="display:flex;align-items:center;gap:15px">
+        <button class="dash-menu-toggle" id="dashToggle" aria-label="Toggle Dashboard Menu" style="margin-right:10px">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div>
+          <h4>Welcome back, Sophie</h4>
+          <p style="color:var(--text-muted);font-size:0.88rem;margin:0">Here's what's happening with your projects.</p>
+        </div>
       </div>
       <div style="display:flex;align-items:center;gap:16px">
         <button class="btn btn-outline" style="padding:10px 20px;font-size:0.72rem">

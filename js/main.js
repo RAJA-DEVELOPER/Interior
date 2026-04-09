@@ -693,6 +693,24 @@ function initSocialLogin() {
   });
 }
 
+/* ── Dashboard Toggle ── */
+function initDashboardToggle() {
+  const toggle = document.getElementById('dashToggle');
+  const sidebar = document.querySelector('.sidebar');
+  if (toggle && sidebar) {
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      sidebar.classList.toggle('open');
+    });
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener('click', (e) => {
+      if (sidebar.classList.contains('open') && !sidebar.contains(e.target) && e.target !== toggle) {
+        sidebar.classList.remove('open');
+      }
+    });
+  }
+}
+
 /* ── Init All ── */
 document.addEventListener('DOMContentLoaded', () => {
   injectNavbar();
@@ -714,4 +732,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initPassToggle();
   initSocialLogin();
+  initDashboardToggle();
 });

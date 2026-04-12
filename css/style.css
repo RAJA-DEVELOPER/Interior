@@ -136,8 +136,8 @@ h5 {
 
 /* ── Layout ── */
 .container {
-  max-width: 1280px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0 5%;
   padding: 0 40px;
 }
 
@@ -198,7 +198,7 @@ h5 {
 .section-header p {
   font-size: 1.05rem;
   color: var(--text-muted);
-  max-width: 560px;
+  max-width: 850px;
   margin-bottom: 0;
 }
 
@@ -328,7 +328,7 @@ h5 {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 1280px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -993,7 +993,7 @@ h5 {
   position: relative;
   z-index: 2;
   color: var(--white);
-  max-width: 700px;
+  max-width: 1000px;
 }
 
 .hero-label {
@@ -1023,7 +1023,7 @@ h5 {
 .hero p {
   font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.78);
-  max-width: 490px;
+  max-width: 800px;
   line-height: 1.82;
   margin-bottom: 38px;
 }
@@ -1164,7 +1164,7 @@ h5 {
 .ph-content p {
   font-size: 1.05rem;
   color: rgba(255, 255, 255, 0.68);
-  max-width: 480px;
+  max-width: 850px;
 }
 
 .ph-content.text-center p {
@@ -1540,7 +1540,7 @@ h5 {
   padding: 48px;
   box-shadow: var(--shadow-md);
   border: 1px solid var(--border);
-  max-width: 800px;
+  max-width: 1100px;
   margin: 0 auto;
   text-align: center;
 }
@@ -2857,7 +2857,7 @@ h5 {
 .cta-section p {
   color: rgba(255, 255, 255, 0.68);
   font-size: 1.05rem;
-  max-width: 500px;
+  max-width: 850px;
   margin: 0 auto 36px;
 }
 
@@ -3062,7 +3062,7 @@ h5 {
   :root {
     --section-py: 90px;
   }
-  
+
   .container {
     padding: 0 50px;
   }
@@ -3077,6 +3077,7 @@ h5 {
 }
 
 @media (max-width: 1200px) {
+
   .grid-4,
   .stats-grid,
   .blog-grid {
@@ -3102,6 +3103,7 @@ h5 {
 }
 
 @media (max-width: 1100px) {
+
   .masonry-grid,
   .gallery-grid,
   .team-grid,
@@ -3205,7 +3207,7 @@ h5 {
 
   .sidebar.open {
     transform: translateX(0);
-    box-shadow: 20px 0 50px rgba(0,0,0,0.15);
+    box-shadow: 20px 0 50px rgba(0, 0, 0, 0.15);
   }
 
   .dash-menu-toggle {
@@ -3277,7 +3279,7 @@ h5 {
   }
 
   .hero-content {
-    max-width: 100%;
+    max-width: 90%;
   }
 
   .hero-label {

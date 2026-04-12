@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
@@ -7,32 +7,222 @@
   <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
+<style>
+.maintenance-page {
+  text-align: left; /* Override default */
+}
+.maint-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.8fr;
+  gap: 40px;
+  align-items: center;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.maint-vector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.maint-vector::after {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: var(--accent);
+  filter: blur(140px);
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.maint-vector svg {
+  position: relative;
+  z-index: 1;
+}
+
+.maint-timeline {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  backdrop-filter: blur(10px);
+  text-align: center;
+}
+
+.vertical-countdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  gap: 15px;
+}
+
+.timeline-item {
+  background: rgba(255,255,255,0.03);
+  width: 100%;
+  padding: 15px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: var(--transition);
+}
+
+.timeline-item:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(193, 154, 107, 0.3);
+}
+
+.timeline-line {
+  width: 2px;
+  height: 20px;
+  background: var(--accent);
+  opacity: 0.3;
+}
+
+@media (max-width: 1024px) {
+  .maint-wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+  .maint-timeline {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 768px) {
+  .maintenance-page {
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  .maint-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .maint-text p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .footer-newsletter {
+    margin: 0 auto;
+  }
+  .footer-social {
+    justify-content: center;
+  }
+  .vertical-countdown {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .timeline-line {
+    display: none;
+  }
+  .timeline-item {
+    width: auto;
+    min-width: 100px;
+  }
+}
+</style>
 <div class="maintenance-page">
-  <div class="container">
-    <div class="maint-content">
-      <div style="margin-bottom:28px">
-        <span class="logo-main" style="font-family:var(--font-heading);font-size:2.2rem;font-weight:700;color:#fff">Lumière</span>
-        <span class="logo-sub" style="display:block;font-size:0.58rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--accent);margin-top:4px">Interiors & Architecture</span>
-      </div>
-      <span class="section-label">We'll Be Back Soon</span>
-      <h2>We're Refreshing Our Space</h2>
-      <p style="color:rgba(255,255,255,0.6);font-size:1.05rem;max-width:460px;margin:0 auto 10px;line-height:1.75">Our website is currently undergoing scheduled maintenance. We're making improvements to serve you better.</p>
-      <div class="countdown" id="countdown" data-target="2026-05-01T00:00:00">
-        <div class="count-item"><div class="cnum" id="days">00</div><div class="clbl">Days</div></div>
-        <div class="count-item"><div class="cnum" id="hours">00</div><div class="clbl">Hours</div></div>
-        <div class="count-item"><div class="cnum" id="minutes">00</div><div class="clbl">Minutes</div></div>
-        <div class="count-item"><div class="cnum" id="seconds">00</div><div class="clbl">Seconds</div></div>
-      </div>
-      <p style="color:rgba(255,255,255,0.45);font-size:0.88rem;margin-bottom:28px">In the meantime, reach us at <a href="mailto:hello@lumiere-interiors.com" style="color:var(--accent)">hello@lumiere-interiors.com</a></p>
-      <div style="display:flex;gap:28px;justify-content:center;">
-        <div class="footer-newsletter" style="max-width:380px;width:100%">
-          <input type="email" placeholder="Get notified when we're back"/>
-          <button type="button">Notify Me</button>
+  <div class="container" style="max-width:1400px;">
+    <div class="maint-wrapper">
+      
+      <!-- Left side: Text -->
+      <div class="maint-text">
+        <div style="margin-bottom:28px">
+          <span class="logo-main" style="font-family:var(--font-heading);font-size:2.2rem;font-weight:700;color:#fff">Lumière</span>
+          <span class="logo-sub" style="display:block;font-size:0.58rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--accent);margin-top:4px">Interiors & Architecture</span>
+        </div>
+        <span class="section-label" style="display:inline-block;margin-bottom:16px;">We'll Be Back Soon</span>
+        <h2 style="color:var(--white);margin-bottom:14px;font-size:3rem;line-height:1.2;">We're Refreshing<br>Our Space</h2>
+        <p style="color:rgba(255,255,255,0.6);font-size:1.05rem;max-width:460px;margin:0 0 10px;line-height:1.75">Our website is currently undergoing scheduled maintenance. We're making improvements to serve you better.</p>
+        <p style="color:rgba(255,255,255,0.45);font-size:0.88rem;margin-bottom:28px">In the meantime, reach us at <a href="mailto:hello@lumiere-interiors.com" style="color:var(--accent)">hello@lumiere-interiors.com</a></p>
+        <div style="display:flex;gap:28px;">
+          <div class="footer-newsletter" style="max-width:380px;width:100%">
+            <input type="email" placeholder="Get notified when we're back"/>
+            <button type="button">Notify Me</button>
+          </div>
+        </div>
+        <div class="footer-social" style="margin-top:32px">
+          <a href="#"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg></a>
+          <a href="#"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
         </div>
       </div>
-      <div class="footer-social" style="justify-content:center;margin-top:32px">
-        <a href="#"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg></a>
-        <a href="#"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+
+      <!-- Center: Vector Image -->
+      <div class="maint-vector">
+        <svg viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 500px; height: auto;">
+          <!-- Elegant Architecture/Interior Sketch -->
+          <!-- Room Frame / Arches -->
+          <path d="M 120 500 L 480 500" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <path d="M 180 500 L 180 200 A 120 120 0 0 1 420 200 L 420 500" stroke="rgba(255,255,255,0.1)" stroke-width="2" fill="rgba(255,255,255,0.02)"/>
+          <path d="M 150 500 L 150 150 A 150 150 0 0 1 450 150 L 450 500" stroke="rgba(255,255,255,0.05)" stroke-width="1" fill="none"/>
+          
+          <!-- Designer Chair -->
+          <g transform="translate(40, 20)">
+            <!-- Legs -->
+            <path d="M 280 480 L 260 410" stroke="rgba(255,255,255,0.7)" stroke-width="4" stroke-linecap="round"/>
+            <path d="M 320 480 L 340 410" stroke="rgba(255,255,255,0.7)" stroke-width="4" stroke-linecap="round"/>
+            <!-- Seat -->
+            <path d="M 240 410 L 360 410" stroke="var(--accent)" stroke-width="8" stroke-linecap="round"/>
+            <!-- Backrest -->
+            <path d="M 245 406 C 240 330 360 330 355 406" fill="rgba(255,255,255,0.05)" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Cushion details -->
+            <path d="M 300 405 L 300 355" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4 4"/>
+          </g>
+          
+          <!-- Modern Minimalist Lamp -->
+          <g transform="translate(-20, 0)">
+            <path d="M 220 500 L 220 180" stroke="rgba(255,255,255,0.3)" stroke-width="3" stroke-linecap="round"/>
+            <path d="M 220 180 L 270 160" stroke="rgba(255,255,255,0.3)" stroke-width="3" stroke-linecap="round"/>
+            <path d="M 270 140 L 255 170 L 285 170 Z" fill="var(--accent)"/>
+            <path d="M 270 170 L 270 240" stroke="var(--accent-light)" stroke-width="30" stroke-linecap="round" style="filter: blur(12px); mix-blend-mode: screen; opacity: 0.6;"/>
+          </g>
+
+          <!-- Potted Plant / Monstera -->
+          <g transform="translate(60, -10)">
+            <rect x="360" y="440" width="40" height="60" rx="4" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+            <path d="M 380 440 C 370 380 320 390 350 440" fill="none" stroke="var(--accent-light)" stroke-width="2" stroke-linecap="round"/>
+            <path d="M 380 440 C 385 360 430 380 400 440" fill="none" stroke="var(--accent-light)" stroke-width="2" stroke-linecap="round"/>
+            <path d="M 380 440 C 390 340 370 330 380 440" fill="none" stroke="var(--accent-light)" stroke-width="2" stroke-linecap="round"/>
+          </g>
+          
+          <!-- Hanging geometric pendant -->
+          <path d="M 300 0 L 300 80" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+          <rect x="290" y="80" width="20" height="40" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <circle cx="300" cy="120" r="15" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+
+          <!-- Abstract floating shapes -->
+          <circle cx="100" cy="150" r="60" fill="none" stroke="var(--accent)" stroke-width="1" style="opacity: 0.2;"/>
+          <circle cx="500" cy="350" r="90" fill="none" stroke="var(--accent)" stroke-width="1" style="opacity: 0.1;"/>
+          <path d="M 450 100 L 520 150 L 450 200 Z" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+        </svg>
+      </div>
+
+      <!-- Right: Timeline / Countdown -->
+      <div class="maint-timeline">
+        <h3 style="color:var(--white);margin-bottom:20px;font-family:var(--font-heading);font-size:2rem;font-weight:600;">Launch <span style="color:var(--accent);">Timeline</span></h3>
+        <p style="color:rgba(255,255,255,0.5);font-size:0.9rem;margin-bottom:30px;">Track our progress below</p>
+        <div class="countdown vertical-countdown" id="countdown" data-target="2026-05-01T00:00:00">
+          <div class="count-item timeline-item">
+            <div class="cnum" id="days">00</div>
+            <div class="clbl">Days</div>
+          </div>
+          <div class="timeline-line"></div>
+          <div class="count-item timeline-item">
+            <div class="cnum" id="hours">00</div>
+            <div class="clbl">Hours</div>
+          </div>
+          <div class="timeline-line"></div>
+          <div class="count-item timeline-item">
+            <div class="cnum" id="minutes">00</div>
+            <div class="clbl">Minutes</div>
+          </div>
+          <div class="timeline-line"></div>
+          <div class="count-item timeline-item">
+            <div class="cnum" id="seconds">00</div>
+            <div class="clbl">Seconds</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
